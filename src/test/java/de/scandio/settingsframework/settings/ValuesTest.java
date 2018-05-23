@@ -30,7 +30,7 @@ public class ValuesTest {
             put("b", "bb");
             put("c", "");
             put("d", null);
-        }}, new Values().getValuesToStore(newValues));
+        }}, new Values().getValuesToStore(newValues, null));
     }
 
     @Test
@@ -44,7 +44,7 @@ public class ValuesTest {
 
         assertEquals(new HashMap<String, String>() {{
 
-        }}, new Values().setDefaultValues(DEFAULT_VALUES).getValuesToStore(newValues));
+        }}, new Values().setDefaultValues(DEFAULT_VALUES).getValuesToStore(newValues, null));
     }
 
     @Test
@@ -58,7 +58,7 @@ public class ValuesTest {
 
         assertEquals(new HashMap<String, String>() {{
             put("a", null);
-        }}, new Values().setDefaultValues(DEFAULT_VALUES).getValuesToStore(newValues));
+        }}, new Values().setDefaultValues(DEFAULT_VALUES).getValuesToStore(newValues, null));
     }
 
     @Test
@@ -74,7 +74,7 @@ public class ValuesTest {
 
         assertEquals(new HashMap<String, String>() {{
             put("e", "ee");
-        }}, new Values().setDefaultValues(DEFAULT_VALUES).getValuesToStore(newValues));
+        }}, new Values().setDefaultValues(DEFAULT_VALUES).getValuesToStore(newValues, null));
     }
 
     @Test
@@ -91,7 +91,7 @@ public class ValuesTest {
         assertEquals(new HashMap<String, String>() {{
             put("e", "ee");
             put("f", "ff");
-        }}, new Values().setDefaultValues(DEFAULT_VALUES).setStoredValues(storedValues).getValuesToStore(newValues));
+        }}, new Values().setDefaultValues(DEFAULT_VALUES).getValuesToStore(newValues, storedValues));
     }
 
     @Test
@@ -108,7 +108,7 @@ public class ValuesTest {
         assertEquals(new HashMap<String, String>() {{
             put("e", "ee");
             put("a", null);
-        }}, new Values().setDefaultValues(DEFAULT_VALUES).setStoredValues(storedValues).getValuesToStore(newValues));
+        }}, new Values().setDefaultValues(DEFAULT_VALUES).getValuesToStore(newValues, storedValues));
     }
 
     @Test
@@ -124,7 +124,7 @@ public class ValuesTest {
 
         assertEquals(new HashMap<String, String>() {{
             
-        }}, new Values().setDefaultValues(DEFAULT_VALUES).setStoredValues(storedValues).getValuesToStore(newValues));
+        }}, new Values().setDefaultValues(DEFAULT_VALUES).getValuesToStore(newValues, storedValues));
     }
 
     @Test
@@ -141,7 +141,7 @@ public class ValuesTest {
 
         assertEquals(new HashMap<String, String>() {{
             put("e", "ee");
-        }}, new Values().setDefaultValues(DEFAULT_VALUES).setStoredValues(storedValues).getValuesToStore(newValues));
+        }}, new Values().setDefaultValues(DEFAULT_VALUES).getValuesToStore(newValues, storedValues));
     }
 
     @Test
@@ -149,7 +149,7 @@ public class ValuesTest {
 
         assertEquals(new HashMap<String, String>() {{
 
-        }}, new Values().getValues());
+        }}, new Values().getValues(null));
     }
 
     @Test
@@ -160,7 +160,7 @@ public class ValuesTest {
             put("b", "bb");
             put("c", "");
             put("d", null);
-        }}, new Values().setDefaultValues(DEFAULT_VALUES).getValues());
+        }}, new Values().setDefaultValues(DEFAULT_VALUES).getValues(null));
     }
 
     @Test
@@ -175,7 +175,7 @@ public class ValuesTest {
             put("b", "bb");
             put("c", "");
             put("d", null);
-        }}, new Values().setDefaultValues(DEFAULT_VALUES).setStoredValues(storedValues).getValues());
+        }}, new Values().setDefaultValues(DEFAULT_VALUES).getValues(storedValues));
     }
 
     @Test
@@ -197,9 +197,8 @@ public class ValuesTest {
             put("e", "ee");
         }}, new Values()
                 .setDefaultValues(DEFAULT_VALUES)
-                .setStoredValues(storedValues)
                 .setMasks(masks)
-                .getValues());
+                .getValues(storedValues));
     }
 
     @Test
@@ -221,9 +220,8 @@ public class ValuesTest {
             put("e", "**");
         }}, new Values()
                 .setDefaultValues(DEFAULT_VALUES)
-                .setStoredValues(storedValues)
                 .setMasks(masks)
-                .getMaskedValues());
+                .getMaskedValues(storedValues));
     }
 
     @Test
@@ -245,9 +243,8 @@ public class ValuesTest {
             put("e", "");
         }}, new Values()
                 .setDefaultValues(DEFAULT_VALUES)
-                .setStoredValues(storedValues)
                 .setMasks(masks)
-                .getMaskedValues());
+                .getMaskedValues(storedValues));
     }
 
     @Test
@@ -265,7 +262,6 @@ public class ValuesTest {
             put("e", "ee");
         }}, new Values()
                 .setDefaultValues(DEFAULT_VALUES)
-                .setStoredValues(storedValues)
                 .setMasks(masks)
                 .getValuesToStore(new HashMap<String, String>() {{
                     put("a", "aaa");
@@ -273,7 +269,7 @@ public class ValuesTest {
                     put("c", "");
                     put("d", null);
                     put("e", "**");
-                }}));
+                }}, storedValues));
     }
 
     @Test
@@ -291,7 +287,6 @@ public class ValuesTest {
             put("e", "eee");
         }}, new Values()
                 .setDefaultValues(DEFAULT_VALUES)
-                .setStoredValues(storedValues)
                 .setMasks(masks)
                 .getValuesToStore(new HashMap<String, String>() {{
                     put("a", "aaa");
@@ -299,7 +294,7 @@ public class ValuesTest {
                     put("c", "");
                     put("d", null);
                     put("e", "eee");
-                }}));
+                }}, storedValues));
     }
 
     @Test
@@ -320,7 +315,7 @@ public class ValuesTest {
             put("b", "bb");
             put("c", "");
             put("d", null);
-        }}, new Values().setDefaultValues(DEFAULT_VALUES).setStoredValues(storedValues).addMigrator(migrator).getValues());
+        }}, new Values().setDefaultValues(DEFAULT_VALUES).addMigrator(migrator).getValues(storedValues));
 
         Map<String, String> newValues = new HashMap<String, String>() {{
             put("a", "xx");
@@ -331,7 +326,7 @@ public class ValuesTest {
 
         assertEquals(new HashMap<String, String>() {{
             put("a", "xx");
-        }}, new Values().setDefaultValues(DEFAULT_VALUES).setStoredValues(storedValues).addMigrator(migrator).getValuesToStore(newValues));
+        }}, new Values().setDefaultValues(DEFAULT_VALUES).addMigrator(migrator).getValuesToStore(newValues, storedValues));
     }
 
     @Test
@@ -351,7 +346,7 @@ public class ValuesTest {
             put("b", "bb");
             put("c", "");
             put("d", null);
-        }}, new Values().setDefaultValues(DEFAULT_VALUES).setStoredValues(storedValues).addMigrator(migrator).getValues());
+        }}, new Values().setDefaultValues(DEFAULT_VALUES).addMigrator(migrator).getValues(storedValues));
 
         Map<String, String> newValues = new HashMap<String, String>() {{
             put("a", "zz");
@@ -362,6 +357,6 @@ public class ValuesTest {
 
         assertEquals(new HashMap<String, String>() {{
             put("a", "zz");
-        }}, new Values().setDefaultValues(DEFAULT_VALUES).setStoredValues(storedValues).addMigrator(migrator).getValuesToStore(newValues));
+        }}, new Values().setDefaultValues(DEFAULT_VALUES).addMigrator(migrator).getValuesToStore(newValues, storedValues));
     }
 }

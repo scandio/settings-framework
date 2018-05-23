@@ -41,12 +41,11 @@ public class Settings {
         return this;
     }
 
-    public void setValues(Map<String, String> values) {
+    public void setValues(Map<String, String> newValues) {
         Map<String, String> storedValues = store.loadValues(this.storageKey);
 
         Map<String, String> valuesToStore = this.values
-                .setStoredValues(storedValues)
-                .getValuesToStore(values);
+                .getValuesToStore(newValues, storedValues);
 
         store.storeValues(this.storageKey, valuesToStore);
     }
@@ -55,16 +54,14 @@ public class Settings {
         Map<String, String> storedValues = store.loadValues(this.storageKey);
 
         return this.values
-                .setStoredValues(storedValues)
-                .getValues();
+                .getValues(storedValues);
     }
 
     public Map<String, String> getMaskedValues() {
         Map<String, String> storedValues = store.loadValues(this.storageKey);
 
         return this.values
-                .setStoredValues(storedValues)
-                .getMaskedValues();
+                .getMaskedValues(storedValues);
     }
 
     public void resetValues() {

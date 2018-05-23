@@ -8,7 +8,6 @@ import java.util.Map;
 public class Values {
 
     private Map<String, String> defaultValues;
-    private Map<String, String> storedValues;
     private Map<String, String> masks;
     private List<Migrator> migrators;
 
@@ -17,25 +16,20 @@ public class Values {
         return this;
     }
 
-    public Values setStoredValues(Map<String, String> storedValues) {
-        this.storedValues = storedValues;
-        return this;
-    }
-
     public Values setMasks(Map<String, String> masks) {
         this.masks = masks;
         return this;
     }
 
-    public Map<String, String> getValuesToStore(Map<String, String> newValues) {
+    public Map<String, String> getValuesToStore(Map<String, String> newValues, Map<String, String> storedValues) {
         Map<String, String> newUnmaskedValues;
 
         if (this.masks != null) {
             newUnmaskedValues = new HashMap<>();
             for (Map.Entry<String, String> entry : newValues.entrySet()) {
                 if (this.masks.get(entry.getKey()) != null && this.masks.get(entry.getKey()).equals(entry.getValue())) {
-                    if (this.storedValues != null && this.storedValues.get(entry.getKey()) != null) {
-                        newUnmaskedValues.put(entry.getKey(), this.storedValues.get(entry.getKey()));
+                    if (storedValues != null && storedValues.get(entry.getKey()) != null) {
+                        newUnmaskedValues.put(entry.getKey(), storedValues.get(entry.getKey()));
                     }
                 } else {
                     newUnmaskedValues.put(entry.getKey(), entry.getValue());
@@ -47,8 +41,8 @@ public class Values {
 
         Map<String, String> valuesToStore = new HashMap<>();
 
-        if (this.storedValues != null) {
-            valuesToStore.putAll(migrate(this.storedValues));
+        if (storedValues != null) {
+            valuesToStore.putAll(migrate(storedValues));
         }
 
         if (newUnmaskedValues != null) {
@@ -66,20 +60,20 @@ public class Values {
         return valuesToStore;
     }
 
-    public Map<String, String> getValues() {
+    public Map<String, String> getValues(Map<String, String> storedValues) {
         Map<String, String> values = this.defaultValues != null ? new HashMap<>(this.defaultValues) : new HashMap<>();
-        if (this.storedValues != null) {
-            values.putAll(migrate(this.storedValues));
+        if (storedValues != null) {
+            values.putAll(migrate(storedValues));
         }
         return values;
     }
 
-    public Map<String, String> getMaskedValues() {
+    public Map<String, String> getMaskedValues(Map<String, String> storedValues) {
         Map<String, String> maskedValues;
 
         if (this.masks != null) {
             maskedValues = new HashMap<>();
-            for (Map.Entry<String, String> entry : this.getValues().entrySet()) {
+            for (Map.Entry<String, String> entry : this.getValues(storedValues).entrySet()) {
                 String value = entry.getValue();
                 if (value != null && value.length() > 0 && masks.get(entry.getKey()) != null) {
                     value = masks.get(entry.getKey());
@@ -87,7 +81,7 @@ public class Values {
                 maskedValues.put(entry.getKey(), value);
             }
         } else {
-            maskedValues = this.getValues();
+            maskedValues = this.getValues(storedValues);
         }
 
         return maskedValues;
