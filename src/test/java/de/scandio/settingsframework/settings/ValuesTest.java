@@ -7,12 +7,7 @@ import java.util.Map;
 
 import static org.junit.Assert.assertEquals;
 
-/**
- * Test for {@link Settings}.
- *
- * @author Georg Schmidl
- */
-public class SettingsTest {
+public class ValuesTest {
 
     private static Map<String, String> DEFAULT_VALUES = new HashMap<String, String>() {{
         put("a", "aa");
@@ -35,7 +30,7 @@ public class SettingsTest {
             put("b", "bb");
             put("c", "");
             put("d", null);
-        }}, new Settings().getValuesToStore(newValues));
+        }}, new Values().getValuesToStore(newValues));
     }
 
     @Test
@@ -49,7 +44,7 @@ public class SettingsTest {
 
         assertEquals(new HashMap<String, String>() {{
 
-        }}, new Settings().setDefaultValues(DEFAULT_VALUES).getValuesToStore(newValues));
+        }}, new Values().setDefaultValues(DEFAULT_VALUES).getValuesToStore(newValues));
     }
 
     @Test
@@ -63,7 +58,7 @@ public class SettingsTest {
 
         assertEquals(new HashMap<String, String>() {{
             put("a", null);
-        }}, new Settings().setDefaultValues(DEFAULT_VALUES).getValuesToStore(newValues));
+        }}, new Values().setDefaultValues(DEFAULT_VALUES).getValuesToStore(newValues));
     }
 
     @Test
@@ -79,7 +74,7 @@ public class SettingsTest {
 
         assertEquals(new HashMap<String, String>() {{
             put("e", "ee");
-        }}, new Settings().setDefaultValues(DEFAULT_VALUES).getValuesToStore(newValues));
+        }}, new Values().setDefaultValues(DEFAULT_VALUES).getValuesToStore(newValues));
     }
 
     @Test
@@ -96,7 +91,7 @@ public class SettingsTest {
         assertEquals(new HashMap<String, String>() {{
             put("e", "ee");
             put("f", "ff");
-        }}, new Settings().setDefaultValues(DEFAULT_VALUES).setStoredValues(storedValues).getValuesToStore(newValues));
+        }}, new Values().setDefaultValues(DEFAULT_VALUES).setStoredValues(storedValues).getValuesToStore(newValues));
     }
 
     @Test
@@ -113,7 +108,7 @@ public class SettingsTest {
         assertEquals(new HashMap<String, String>() {{
             put("e", "ee");
             put("a", null);
-        }}, new Settings().setDefaultValues(DEFAULT_VALUES).setStoredValues(storedValues).getValuesToStore(newValues));
+        }}, new Values().setDefaultValues(DEFAULT_VALUES).setStoredValues(storedValues).getValuesToStore(newValues));
     }
 
     @Test
@@ -129,7 +124,7 @@ public class SettingsTest {
 
         assertEquals(new HashMap<String, String>() {{
             
-        }}, new Settings().setDefaultValues(DEFAULT_VALUES).setStoredValues(storedValues).getValuesToStore(newValues));
+        }}, new Values().setDefaultValues(DEFAULT_VALUES).setStoredValues(storedValues).getValuesToStore(newValues));
     }
 
     @Test
@@ -146,7 +141,7 @@ public class SettingsTest {
 
         assertEquals(new HashMap<String, String>() {{
             put("e", "ee");
-        }}, new Settings().setDefaultValues(DEFAULT_VALUES).setStoredValues(storedValues).getValuesToStore(newValues));
+        }}, new Values().setDefaultValues(DEFAULT_VALUES).setStoredValues(storedValues).getValuesToStore(newValues));
     }
 
     @Test
@@ -154,7 +149,7 @@ public class SettingsTest {
 
         assertEquals(new HashMap<String, String>() {{
 
-        }}, new Settings().getValues());
+        }}, new Values().getValues());
     }
 
     @Test
@@ -165,7 +160,7 @@ public class SettingsTest {
             put("b", "bb");
             put("c", "");
             put("d", null);
-        }}, new Settings().setDefaultValues(DEFAULT_VALUES).getValues());
+        }}, new Values().setDefaultValues(DEFAULT_VALUES).getValues());
     }
 
     @Test
@@ -180,7 +175,7 @@ public class SettingsTest {
             put("b", "bb");
             put("c", "");
             put("d", null);
-        }}, new Settings().setDefaultValues(DEFAULT_VALUES).setStoredValues(storedValues).getValues());
+        }}, new Values().setDefaultValues(DEFAULT_VALUES).setStoredValues(storedValues).getValues());
     }
 
     @Test
@@ -200,7 +195,7 @@ public class SettingsTest {
             put("c", "");
             put("d", null);
             put("e", "ee");
-        }}, new Settings()
+        }}, new Values()
                 .setDefaultValues(DEFAULT_VALUES)
                 .setStoredValues(storedValues)
                 .setMasks(masks)
@@ -224,7 +219,7 @@ public class SettingsTest {
             put("c", "");
             put("d", null);
             put("e", "**");
-        }}, new Settings()
+        }}, new Values()
                 .setDefaultValues(DEFAULT_VALUES)
                 .setStoredValues(storedValues)
                 .setMasks(masks)
@@ -248,7 +243,7 @@ public class SettingsTest {
             put("c", "");
             put("d", null);
             put("e", "");
-        }}, new Settings()
+        }}, new Values()
                 .setDefaultValues(DEFAULT_VALUES)
                 .setStoredValues(storedValues)
                 .setMasks(masks)
@@ -268,7 +263,7 @@ public class SettingsTest {
         assertEquals(new HashMap<String, String>() {{
             put("a", "aaa");
             put("e", "ee");
-        }}, new Settings()
+        }}, new Values()
                 .setDefaultValues(DEFAULT_VALUES)
                 .setStoredValues(storedValues)
                 .setMasks(masks)
@@ -294,7 +289,7 @@ public class SettingsTest {
         assertEquals(new HashMap<String, String>() {{
             put("a", "aaa");
             put("e", "eee");
-        }}, new Settings()
+        }}, new Values()
                 .setDefaultValues(DEFAULT_VALUES)
                 .setStoredValues(storedValues)
                 .setMasks(masks)
@@ -313,7 +308,7 @@ public class SettingsTest {
             put("a-old", "xx");
         }};
 
-        SettingsMigrator migrator = values -> {
+        Migrator migrator = values -> {
             Map<String, String> newValues = new HashMap<>(values);
             newValues.remove("a-old");
             newValues.put("a", values.get("a-old"));
@@ -325,7 +320,7 @@ public class SettingsTest {
             put("b", "bb");
             put("c", "");
             put("d", null);
-        }}, new Settings().setDefaultValues(DEFAULT_VALUES).setStoredValues(storedValues).addMigrator(migrator).getValues());
+        }}, new Values().setDefaultValues(DEFAULT_VALUES).setStoredValues(storedValues).addMigrator(migrator).getValues());
 
         Map<String, String> newValues = new HashMap<String, String>() {{
             put("a", "xx");
@@ -336,7 +331,7 @@ public class SettingsTest {
 
         assertEquals(new HashMap<String, String>() {{
             put("a", "xx");
-        }}, new Settings().setDefaultValues(DEFAULT_VALUES).setStoredValues(storedValues).addMigrator(migrator).getValuesToStore(newValues));
+        }}, new Values().setDefaultValues(DEFAULT_VALUES).setStoredValues(storedValues).addMigrator(migrator).getValuesToStore(newValues));
     }
 
     @Test
@@ -345,7 +340,7 @@ public class SettingsTest {
             put("a", "xx");
         }};
 
-        SettingsMigrator migrator = values -> {
+        Migrator migrator = values -> {
             Map<String, String> newValues = new HashMap<>(values);
             newValues.put("a", "yy");
             return newValues;
@@ -356,7 +351,7 @@ public class SettingsTest {
             put("b", "bb");
             put("c", "");
             put("d", null);
-        }}, new Settings().setDefaultValues(DEFAULT_VALUES).setStoredValues(storedValues).addMigrator(migrator).getValues());
+        }}, new Values().setDefaultValues(DEFAULT_VALUES).setStoredValues(storedValues).addMigrator(migrator).getValues());
 
         Map<String, String> newValues = new HashMap<String, String>() {{
             put("a", "zz");
@@ -367,6 +362,6 @@ public class SettingsTest {
 
         assertEquals(new HashMap<String, String>() {{
             put("a", "zz");
-        }}, new Settings().setDefaultValues(DEFAULT_VALUES).setStoredValues(storedValues).addMigrator(migrator).getValuesToStore(newValues));
+        }}, new Values().setDefaultValues(DEFAULT_VALUES).setStoredValues(storedValues).addMigrator(migrator).getValuesToStore(newValues));
     }
 }

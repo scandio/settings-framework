@@ -5,7 +5,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>de.scandio</groupId>
-    <artifactId>settings-framework</artifactId>
+    <artifactId>values-framework</artifactId>
     <version>1.0.0-SNAPSHOT</version>
 
     <organization>
@@ -14,9 +14,22 @@
     </organization>
 
     <name>Settings Framework</name>
-    <description>Framework that helps to store and migrate application settings, configs, options, properties, preferences, ...</description>
+    <description>Framework that helps to store and migrate application values, configs, options, properties, preferences, ...</description>
 
     <dependencies>
+        <dependency>
+            <groupId>com.atlassian.confluence</groupId>
+            <artifactId>confluence</artifactId>
+            <version>6.9.0</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>javax.servlet</groupId>
+            <artifactId>javax.servlet-api</artifactId>
+            <version>3.1.0</version>
+            <scope>provided</scope>
+        </dependency>
+
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
@@ -50,9 +63,9 @@
     </build>
 
     <scm>
-        <url>https://github.com/scandio/settings-framework</url>
-        <connection>scm:git:git@github.com:scandio/settings-framework.git</connection>
-        <developerConnection>scm:git:git@github.com:scandio/settings-framework.git</developerConnection>
+        <url>https://github.com/scandio/values-framework</url>
+        <connection>scm:git:git@github.com:scandio/values-framework.git</connection>
+        <developerConnection>scm:git:git@github.com:scandio/values-framework.git</developerConnection>
         <tag>HEAD</tag>
     </scm>
 

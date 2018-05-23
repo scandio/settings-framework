@@ -1,125 +1,59 @@
 package de.scandio.settingsframework.settings;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
-/**
- * Main Settings class.
- *
- * @author Georg Schmidl
- */
 public class Settings {
 
-    private Map<String, String> defaultValues;
-    private Map<String, String> storedValues;
-    private Map<String, String> masks;
-    private List<SettingsMigrator> migrators;
+    private final Values values;
+    private final Store store;
 
-    public Settings setDefaultValues(Map<String, String> defaultValues) {
-        this.defaultValues = defaultValues;
+    public Settings(Store store) {
+        this.store = store;
+        this.values = new Values();
+    }
+
+    public Settings withDefaultValues(Map<String, String> defaultValues) {
+        this.values.setDefaultValues(defaultValues);
         return this;
     }
 
-    public Settings setStoredValues(Map<String, String> storedValues) {
-        this.storedValues = storedValues;
+    public Settings withMasks(Map<String, String> masks) {
+        this.values.setMasks(masks);
         return this;
     }
 
-    public Settings setMasks(Map<String, String> masks) {
-        this.masks = masks;
+    public Settings withMigrator(Migrator migrator) {
+        this.values.addMigrator(migrator);
         return this;
     }
 
-    public Map<String, String> getValuesToStore(Map<String, String> newValues) {
-        Map<String, String> newUnmaskedValues;
+    public void setValues(Map<String, String> values) {
+        Map<String, String> storedValues = store.loadValues();
 
-        if (this.masks != null) {
-            newUnmaskedValues = new HashMap<>();
-            for (Map.Entry<String, String> entry : newValues.entrySet()) {
-                if (this.masks.get(entry.getKey()) != null && this.masks.get(entry.getKey()).equals(entry.getValue())) {
-                    if (this.storedValues != null && this.storedValues.get(entry.getKey()) != null) {
-                        newUnmaskedValues.put(entry.getKey(), this.storedValues.get(entry.getKey()));
-                    }
-                } else {
-                    newUnmaskedValues.put(entry.getKey(), entry.getValue());
-                }
-            }
-        } else {
-            newUnmaskedValues = newValues;
-        }
+        Map<String, String> valuesToStore = this.values
+                .setStoredValues(storedValues)
+                .getValuesToStore(values);
 
-        Map<String, String> valuesToStore = new HashMap<>();
-
-        if (this.storedValues != null) {
-            valuesToStore.putAll(migrate(this.storedValues));
-        }
-
-        if (newUnmaskedValues != null) {
-            valuesToStore.putAll(newUnmaskedValues);
-        }
-
-        if (this.defaultValues != null && !this.defaultValues.isEmpty() && !valuesToStore.isEmpty()) {
-            this.defaultValues.forEach((key, value) -> {
-                if (valuesToStore.containsKey(key) && valueEquals(valuesToStore.get(key), value)) {
-                    valuesToStore.remove(key);
-                }
-            }) ;
-        }
-
-        return valuesToStore;
+        store.storeValues(valuesToStore);
     }
 
     public Map<String, String> getValues() {
-        Map<String, String> values = this.defaultValues != null ? new HashMap<>(this.defaultValues) : new HashMap<>();
-        if (this.storedValues != null) {
-            values.putAll(migrate(this.storedValues));
-        }
-        return values;
+        Map<String, String> storedValues = store.loadValues();
+
+        return this.values
+                .setStoredValues(storedValues)
+                .getValues();
     }
 
     public Map<String, String> getMaskedValues() {
-        Map<String, String> maskedValues;
+        Map<String, String> storedValues = store.loadValues();
 
-        if (this.masks != null) {
-            maskedValues = new HashMap<>();
-            for (Map.Entry<String, String> entry : this.getValues().entrySet()) {
-                String value = entry.getValue();
-                if (value != null && value.length() > 0 && masks.get(entry.getKey()) != null) {
-                    value = masks.get(entry.getKey());
-                }
-                maskedValues.put(entry.getKey(), value);
-            }
-        } else {
-            maskedValues = this.getValues();
-        }
-
-        return maskedValues;
+        return this.values
+                .setStoredValues(storedValues)
+                .getMaskedValues();
     }
 
-    public Settings addMigrator(SettingsMigrator migrator) {
-        if (this.migrators == null) {
-            this.migrators = new ArrayList<>();
-        }
-        this.migrators.add(migrator);
-        return this;
-    }
-
-    public Setting forKey(String key) {
-        return new Setting(this, key);
-    }
-
-    private Map<String, String> migrate(Map<String, String> values) {
-        if (this.migrators != null) {
-            for (SettingsMigrator migrator : this.migrators) {
-                values = migrator.migrate(values);
-            }
-        }
-        return values;
-    }
-
-    private boolean valueEquals(String left, String right) {
-        return left == null && right == null || !(left == null || right == null) && left.equals(right);
+    public void resetValues() {
+        store.removeValues();
     }
 }
