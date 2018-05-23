@@ -8,37 +8,16 @@ public class Settings {
     private final Values values;
     private final Store store;
 
-    public Settings(Store store) {
+    public Settings(Store store, Config config) {
         this.store = store;
         this.values = new Values();
-    }
 
-    public Settings withConfig(Config config) {
-        this.storageKey = config.getStorageKey();
-        this.values.setDefaultValues(config.getDefaultValues());
-        this.values.setMasks(config.getMasks());
-        this.values.setMigrators(config.getMigrators());
-        return this;
-    }
-
-    public Settings withStorageKey(String storageKey) {
-        this.storageKey = storageKey;
-        return this;
-    }
-
-    public Settings withDefaultValues(Map<String, String> defaultValues) {
-        this.values.setDefaultValues(defaultValues);
-        return this;
-    }
-
-    public Settings withMasks(Map<String, String> masks) {
-        this.values.setMasks(masks);
-        return this;
-    }
-
-    public Settings withMigrator(Migrator migrator) {
-        this.values.addMigrator(migrator);
-        return this;
+        if (config != null) {
+            this.storageKey = config.getStorageKey();
+            this.values.setDefaultValues(config.getDefaultValues());
+            this.values.setMasks(config.getMasks());
+            this.values.setMigrators(config.getMigrators());
+        }
     }
 
     public void setValues(Map<String, String> newValues) {
