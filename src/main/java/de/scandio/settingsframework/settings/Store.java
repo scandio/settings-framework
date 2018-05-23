@@ -4,9 +4,9 @@ import java.util.Map;
 
 public interface Store {
 
-    Map<String, String> loadValues();
+    Map<String, String> loadValues(String storageKey);
 
-    void storeValues(Map<String, String> values);
+    void storeValues(String storageKey, Map<String, String> values);
 
-    void removeValues();
+    void removeValues(String storageKey);
 }

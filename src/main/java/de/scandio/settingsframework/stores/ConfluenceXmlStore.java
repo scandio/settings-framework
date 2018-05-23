@@ -4,29 +4,28 @@ import com.atlassian.bandana.BandanaContext;
 import com.atlassian.bandana.BandanaManager;
 import com.atlassian.confluence.setup.bandana.ConfluenceBandanaContext;
 
-public class ConfluenceGlobalXmlStore extends AbstractXmlStore {
+public class ConfluenceXmlStore extends AbstractXmlStore {
 
     private final BandanaManager bandanaManager;
     private final BandanaContext bandanaContext;
 
-    public ConfluenceGlobalXmlStore(String storageKey, BandanaManager bandanaManager) {
-        super(storageKey);
+    public ConfluenceXmlStore(BandanaManager bandanaManager) {
         this.bandanaManager = bandanaManager;
         this.bandanaContext = new ConfluenceBandanaContext();
     }
 
     @Override
-    protected String loadValuesXml() {
+    protected String loadValuesXml(String storageKey) {
         return (String) bandanaManager.getValue(bandanaContext, storageKey);
     }
 
     @Override
-    protected void removeValuesXml() {
+    protected void removeValuesXml(String storageKey) {
         bandanaManager.removeValue(bandanaContext, storageKey);
     }
 
     @Override
-    protected void storeValuesXml(String valuesXml) {
+    protected void storeValuesXml(String storageKey, String valuesXml) {
         bandanaManager.setValue(bandanaContext, storageKey, valuesXml);
     }
 }

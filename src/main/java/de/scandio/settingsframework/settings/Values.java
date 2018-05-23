@@ -101,6 +101,11 @@ public class Values {
         return this;
     }
 
+    public Values setMigrators(List<Migrator> migrators) {
+        this.migrators = migrators;
+        return this;
+    }
+
     private Map<String, String> migrate(Map<String, String> values) {
         if (this.migrators != null) {
             for (Migrator migrator : this.migrators) {

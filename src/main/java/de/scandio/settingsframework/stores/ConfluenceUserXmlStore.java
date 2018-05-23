@@ -12,25 +12,24 @@ public class ConfluenceUserXmlStore extends AbstractXmlStore {
 
     private final PersonalInformation personalInformation;
 
-    public ConfluenceUserXmlStore(String storageKey, ConfluenceUser user, PersonalInformationManager personalInformationManager, ContentPropertyManager contentPropertyManager) {
-        super(storageKey);
+    public ConfluenceUserXmlStore(ConfluenceUser user, PersonalInformationManager personalInformationManager, ContentPropertyManager contentPropertyManager) {
         this.personalInformationManager = personalInformationManager;
         this.contentPropertyManager = contentPropertyManager;
         this.personalInformation = this.personalInformationManager.getOrCreatePersonalInformation(user);
     }
 
     @Override
-    protected String loadValuesXml() {
+    protected String loadValuesXml(String storageKey) {
         return contentPropertyManager.getTextProperty(personalInformation, storageKey);
     }
 
     @Override
-    protected void removeValuesXml() {
+    protected void removeValuesXml(String storageKey) {
         contentPropertyManager.removeProperty(personalInformation, storageKey);
     }
 
     @Override
-    protected void storeValuesXml(String valuesXml) {
+    protected void storeValuesXml(String storageKey, String valuesXml) {
         contentPropertyManager.setTextProperty(personalInformation, storageKey, valuesXml);
     }
 }

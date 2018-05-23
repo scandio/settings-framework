@@ -9,24 +9,23 @@ public class ConfluenceSpaceXmlStore extends AbstractXmlStore {
     private final BandanaManager bandanaManager;
     private final BandanaContext bandanaContext;
 
-    public ConfluenceSpaceXmlStore(String storageKey, String spaceKey, BandanaManager bandanaManager) {
-        super(storageKey);
+    public ConfluenceSpaceXmlStore(String spaceKey, BandanaManager bandanaManager) {
         this.bandanaContext = new ConfluenceBandanaContext(spaceKey);
         this.bandanaManager = bandanaManager;
     }
 
     @Override
-    protected String loadValuesXml() {
+    protected String loadValuesXml(String storageKey) {
         return (String) bandanaManager.getValue(bandanaContext, storageKey);
     }
 
     @Override
-    protected void removeValuesXml() {
+    protected void removeValuesXml(String storageKey) {
         bandanaManager.removeValue(bandanaContext, storageKey);
     }
 
     @Override
-    protected void storeValuesXml(String valuesXml) {
+    protected void storeValuesXml(String storageKey, String valuesXml) {
         bandanaManager.setValue(bandanaContext, storageKey, valuesXml);
     }
 }
