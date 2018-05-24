@@ -1,11 +1,9 @@
-package de.scandio.settingsframework.services.impl;
+package de.scandio.settingsframework.services;
 
 import com.atlassian.confluence.core.ContentPropertyManager;
 import com.atlassian.confluence.pages.Page;
 import com.atlassian.confluence.user.ConfluenceUser;
 import com.atlassian.confluence.user.PersonalInformationManager;
-import de.scandio.settingsframework.services.ConfigService;
-import de.scandio.settingsframework.services.ConfluenceExtendedSettingsService;
 import de.scandio.settingsframework.settings.Config;
 import de.scandio.settingsframework.settings.Settings;
 import de.scandio.settingsframework.settings.Store;

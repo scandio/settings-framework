@@ -1,4 +1,4 @@
-package de.scandio.settingsframework.services.impl;
+package de.scandio.settingsframework.services;
 
 import com.atlassian.bandana.BandanaManager;
 import de.scandio.settingsframework.services.ConfigService;

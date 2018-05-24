@@ -1,4 +1,4 @@
-package de.scandio.settingsframework.services.impl;
+package de.scandio.settingsframework.services;
 
 import de.scandio.settingsframework.configs.SingletonConfig;
 import de.scandio.settingsframework.services.ConfigService;
