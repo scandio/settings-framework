@@ -43,14 +43,15 @@ Add a config class and configure your settings.
     
         @Override
         public void afterPropertiesSet() {
-            Config config = SingletonConfig.getInstance();
-            config.setStorageKey("settings-framework-example.settings");
-            config.addAllowedKey("exampleInput");
-            config.addAllowedKey("exampleDefault");
-            config.addAllowedKey("exampleMasked");
-            config.addAllowedKey("exampleCheckbox");
-            config.putDefaultValue("exampleDefault", "This is a default value");
-            config.putMask("exampleMasked", "********");
+            SingletonConfig.getInstance()
+                    .setStorageKey("settings-framework-example.settings")
+                    .addAllowedKey("exampleInput")
+                    .addAllowedKey("exampleDefault")
+                    .addAllowedKey("exampleMasked")
+                    .addAllowedKey("exampleCheckbox")
+                    .putDefaultValue("exampleDefault", "This is a default value")
+                    .putMask("exampleMasked", "********");
+            
         }
     }
     
