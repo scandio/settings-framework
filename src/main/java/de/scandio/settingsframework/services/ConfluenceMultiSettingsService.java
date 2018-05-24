@@ -5,7 +5,7 @@ import de.scandio.settingsframework.settings.Store;
 import de.scandio.settingsframework.stores.ConfluenceXmlStore;
 
 
-public abstract class ConfluenceMultiSettingsService extends AbstractMultiSettingsService implements SettingsService {
+public class ConfluenceMultiSettingsService extends AbstractMultiSettingsService implements MultiSettingsService {
 
     protected BandanaManager bandanaManager;
 
