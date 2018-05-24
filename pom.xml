@@ -14,7 +14,7 @@
     </organization>
 
     <name>Settings Framework</name>
-    <description>Framework that helps to store and migrate application values, configs, options, properties, preferences, ...</description>
+    <description>Framework that helps to store and migrate application settings.</description>
 
     <dependencies>
         <dependency>
