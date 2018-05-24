@@ -1,6 +1,7 @@
 package de.scandio.settingsframework.settings;
 
 import java.util.ArrayList;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -54,6 +55,22 @@ public class Config {
 
     public Config setMigrators(List<Migrator> migrators) {
         this.migrators = migrators;
+        return this;
+    }
+
+    public Config putDefaultValue(String key, String value) {
+        if (this.defaultValues == null) {
+            this.defaultValues = new LinkedHashMap<>();
+        }
+        this.defaultValues.put(key, value);
+        return this;
+    }
+
+    public Config putMask(String key, String value) {
+        if (this.masks == null) {
+            this.masks = new LinkedHashMap<>();
+        }
+        this.masks.put(key, value);
         return this;
     }
 
