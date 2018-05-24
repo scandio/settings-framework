@@ -13,7 +13,9 @@ public abstract class AbstractMultiSettingsService implements MultiSettingsServi
     public Settings getSettings(String configKey) {
         Config config = multiConfigService.getConfig(configKey);
         Store store = this.getStore();
-        return new Settings(store, config);
+        return config != null && store != null
+                ? new Settings(store, config)
+                : null;
     }
 
     protected abstract Store getStore();

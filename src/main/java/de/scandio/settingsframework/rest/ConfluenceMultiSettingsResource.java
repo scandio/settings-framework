@@ -5,7 +5,7 @@ import com.atlassian.confluence.security.PermissionManager;
 import com.atlassian.confluence.user.AuthenticatedUserThreadLocal;
 import com.atlassian.confluence.user.ConfluenceUser;
 import de.scandio.settingsframework.services.MultiSettingsService;
-import de.scandio.settingsframework.services.SettingsService;
+import de.scandio.settingsframework.settings.Settings;
 
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
@@ -27,8 +27,13 @@ public class ConfluenceMultiSettingsResource {
             return Response.status(404).build();
         }
 
-        Map<String, String> settings = multiSettingsService.getSettings(configKey).getMaskedValues();
-        return Response.ok(settings).build();
+        Settings settings = multiSettingsService.getSettings(configKey);
+
+        if (settings == null) {
+            return Response.status(404).build();
+        }
+
+        return Response.ok(settings.getMaskedValues()).build();
     }
 
     @PUT
@@ -38,9 +43,14 @@ public class ConfluenceMultiSettingsResource {
             return Response.status(404).build();
         }
 
-        multiSettingsService.getSettings(configKey).setValues((newSettings));
-        Map<String, String> settings = multiSettingsService.getSettings(configKey).getMaskedValues();
-        return Response.ok(settings).build();
+        Settings settings = multiSettingsService.getSettings(configKey);
+
+        if (settings == null) {
+            return Response.status(404).build();
+        }
+
+        settings.setValues((newSettings));
+        return Response.ok(settings.getMaskedValues()).build();
     }
 
     private boolean userIsNotAdministrator() {
