@@ -9,20 +9,13 @@ import de.scandio.settingsframework.settings.Store;
 import de.scandio.settingsframework.stores.ConfluenceXmlStore;
 
 
-public class ConfluenceSettingsService implements SettingsService {
+public class ConfluenceSettingsService extends AbstractSettingsService implements SettingsService {
 
-    protected ConfigService configService;
     protected BandanaManager bandanaManager;
 
     @Override
-    public Settings getSettings() {
-        Config config = configService.getConfig();
-        Store store = new ConfluenceXmlStore(bandanaManager);
-        return new Settings(store, config);
-    }
-
-    public void setConfigService(ConfigService configService) {
-        this.configService = configService;
+    protected Store getStore() {
+        return new ConfluenceXmlStore(bandanaManager);
     }
 
     public void setBandanaManager(BandanaManager bandanaManager) {
