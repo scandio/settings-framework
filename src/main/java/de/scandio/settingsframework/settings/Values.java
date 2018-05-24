@@ -4,12 +4,19 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 public class Values {
 
+    private List<String> allowedValues;
     private Map<String, String> defaultValues;
     private Map<String, String> masks;
     private List<Migrator> migrators;
+
+    public Values setAllowedValues(List<String> allowedValues) {
+        this.allowedValues = allowedValues;
+        return this;
+    }
 
     public Values setDefaultValues(Map<String, String> defaultValues) {
         this.defaultValues = defaultValues;
@@ -22,6 +29,12 @@ public class Values {
     }
 
     public Map<String, String> getValuesToStore(Map<String, String> newValues, Map<String, String> storedValues) {
+        if (this.allowedValues != null) {
+            newValues = newValues.entrySet().stream()
+                    .filter(x -> this.allowedValues.contains(x.getKey()))
+                    .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue));
+        }
+
         Map<String, String> newUnmaskedValues;
 
         if (this.masks != null) {

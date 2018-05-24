@@ -2,6 +2,7 @@ package de.scandio.settingsframework.settings;
 
 import org.junit.Test;
 
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -358,5 +359,20 @@ public class ValuesTest {
         assertEquals(new HashMap<String, String>() {{
             put("a", "zz");
         }}, new Values().setDefaultValues(DEFAULT_VALUES).addMigrator(migrator).getValuesToStore(newValues, storedValues));
+    }
+
+    @Test
+    public void allowedValues() throws Exception {
+        Map<String, String> newValues = new HashMap<String, String>() {{
+            put("a", "aa");
+            put("b", "bb");
+            put("c", "");
+            put("d", null);
+        }};
+
+        assertEquals(new HashMap<String, String>() {{
+            put("a", "aa");
+            put("c", "");
+        }}, new Values().setAllowedValues(Arrays.asList("a", "c")).getValuesToStore(newValues, null));
     }
 }
