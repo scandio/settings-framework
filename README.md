@@ -31,7 +31,7 @@ Add the maven dependency to your pom.xml.
     <dependency>
         <groupId>de.scandio</groupId>
         <artifactId>settings-framework</artifactId>
-        <version>0.1.0-SNAPSHOT</version>
+        <version>0.2.0</version>
     </dependency>
     
     
@@ -43,7 +43,7 @@ Add a config class and configure your settings.
     
         @Override
         public void afterPropertiesSet() {
-            SingletonConfig.getInstance()
+            SingletonConfig.getConfig()
                     .setStorageKey("settings-framework-example.settings")
                     .addAllowedKey("exampleInput")
                     .addAllowedKey("exampleDefault")
