@@ -14,6 +14,7 @@ public class Settings {
 
         if (config != null) {
             this.storageKey = config.getStorageKey();
+            this.values.setAllowedKeys(config.getAllowedKeys());
             this.values.setDefaultValues(config.getDefaultValues());
             this.values.setMasks(config.getMasks());
             this.values.setMigrators(config.getMigrators());
