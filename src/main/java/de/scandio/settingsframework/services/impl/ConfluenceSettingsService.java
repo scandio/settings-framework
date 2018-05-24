@@ -9,7 +9,7 @@ import de.scandio.settingsframework.settings.Store;
 import de.scandio.settingsframework.stores.ConfluenceXmlStore;
 
 
-public class ConfluenceSettingsServiceImpl implements SettingsService {
+public class ConfluenceSettingsService implements SettingsService {
 
     protected ConfigService configService;
     protected BandanaManager bandanaManager;

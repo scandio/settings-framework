@@ -12,10 +12,9 @@ import de.scandio.settingsframework.settings.Store;
 import de.scandio.settingsframework.stores.ConfluencePageXmlStore;
 import de.scandio.settingsframework.stores.ConfluenceSpaceXmlStore;
 import de.scandio.settingsframework.stores.ConfluenceUserXmlStore;
-import de.scandio.settingsframework.stores.ConfluenceXmlStore;
 
 
-public class ConfluenceExtendedSettingsServiceImpl extends ConfluenceSettingsServiceImpl implements ConfluenceExtendedSettingsService {
+public class ConfluenceExtendedSettingsServiceImpl extends ConfluenceSettingsService implements ConfluenceExtendedSettingsService {
 
     protected ConfigService configService;
     protected PersonalInformationManager personalInformationManager;
