@@ -362,7 +362,7 @@ public class ValuesTest {
     }
 
     @Test
-    public void allowedValues() throws Exception {
+    public void allowedKeys() throws Exception {
         Map<String, String> newValues = new HashMap<String, String>() {{
             put("a", "aa");
             put("b", "bb");
@@ -373,6 +373,6 @@ public class ValuesTest {
         assertEquals(new HashMap<String, String>() {{
             put("a", "aa");
             put("c", "");
-        }}, new Values().setAllowedValues(Arrays.asList("a", "c")).getValuesToStore(newValues, null));
+        }}, new Values().setAllowedKeys(Arrays.asList("a", "c")).getValuesToStore(newValues, null));
     }
 }

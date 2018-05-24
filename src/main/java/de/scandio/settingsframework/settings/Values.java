@@ -8,13 +8,13 @@ import java.util.stream.Collectors;
 
 public class Values {
 
-    private List<String> allowedValues;
+    private List<String> allowedKeys;
     private Map<String, String> defaultValues;
     private Map<String, String> masks;
     private List<Migrator> migrators;
 
-    public Values setAllowedValues(List<String> allowedValues) {
-        this.allowedValues = allowedValues;
+    public Values setAllowedKeys(List<String> allowedKeys) {
+        this.allowedKeys = allowedKeys;
         return this;
     }
 
@@ -29,9 +29,9 @@ public class Values {
     }
 
     public Map<String, String> getValuesToStore(Map<String, String> newValues, Map<String, String> storedValues) {
-        if (this.allowedValues != null) {
+        if (this.allowedKeys != null) {
             newValues = newValues.entrySet().stream()
-                    .filter(x -> this.allowedValues.contains(x.getKey()))
+                    .filter(x -> this.allowedKeys.contains(x.getKey()))
                     .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue));
         }
 

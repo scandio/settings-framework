@@ -8,7 +8,7 @@ import java.util.Map;
 public class Config {
 
     private String storageKey;
-    private List<String> allowedValues;
+    private List<String> allowedKeys;
     private Map<String, String> defaultValues;
     private Map<String, String> masks;
     private List<Migrator> migrators;
@@ -16,9 +16,9 @@ public class Config {
     public Config() {
     }
 
-    public Config(String storageKey, List<String> allowedValues, Map<String, String> defaultValues, Map<String, String> masks, List<Migrator> migrators) {
+    public Config(String storageKey, List<String> allowedKeys, Map<String, String> defaultValues, Map<String, String> masks, List<Migrator> migrators) {
         this.storageKey = storageKey;
-        this.allowedValues = allowedValues;
+        this.allowedKeys = allowedKeys;
         this.defaultValues = defaultValues;
         this.masks = masks;
         this.migrators = migrators;
@@ -28,8 +28,8 @@ public class Config {
         return storageKey;
     }
 
-    public List<String> getAllowedValues() {
-        return allowedValues;
+    public List<String> getAllowedKeys() {
+        return allowedKeys;
     }
 
     public Map<String, String> getDefaultValues() {
@@ -49,8 +49,8 @@ public class Config {
         return this;
     }
 
-    public Config setAllowedValues(List<String> allowedValues) {
-        this.allowedValues = allowedValues;
+    public Config setAllowedKeys(List<String> allowedKeys) {
+        this.allowedKeys = allowedKeys;
         return this;
     }
 
@@ -69,11 +69,11 @@ public class Config {
         return this;
     }
 
-    public Config addAllowedValue(String key) {
-        if (this.allowedValues == null) {
-            this.allowedValues = new ArrayList<>();
+    public Config addAllowedKey(String key) {
+        if (this.allowedKeys == null) {
+            this.allowedKeys = new ArrayList<>();
         }
-        this.allowedValues.add(key);
+        this.allowedKeys.add(key);
         return this;
     }
 
