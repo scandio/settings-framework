@@ -31,16 +31,22 @@ public class Settings {
 
     public Map<String, String> getValues() {
         Map<String, String> storedValues = store.loadValues(this.storageKey);
-
-        return this.values
-                .getValues(storedValues);
+        return this.values.getValues(storedValues);
     }
 
     public Map<String, String> getMaskedValues() {
         Map<String, String> storedValues = store.loadValues(this.storageKey);
+        return this.values.getMaskedValues(storedValues);
+    }
 
-        return this.values
-                .getMaskedValues(storedValues);
+    public String getValue(String key) {
+        Map<String, String> values = this.getValues();
+        return values != null ? values.get(key) : null;
+    }
+
+    public String getMaskedValue(String key) {
+        Map<String, String> maskedValues = this.getMaskedValues();
+        return maskedValues != null ? maskedValues.get(key) : null;
     }
 
     public void resetValues() {
