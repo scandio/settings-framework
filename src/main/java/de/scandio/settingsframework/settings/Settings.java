@@ -9,16 +9,18 @@ public class Settings {
     private final Store store;
 
     public Settings(Store store, Config config) {
+        if (store == null || config == null) {
+            throw new IllegalArgumentException("Store or Config cannot be null");
+        }
+
         this.store = store;
         this.values = new Values();
 
-        if (config != null) {
-            this.storageKey = config.getStorageKey();
-            this.values.setAllowedKeys(config.getAllowedKeys());
-            this.values.setDefaultValues(config.getDefaultValues());
-            this.values.setMasks(config.getMasks());
-            this.values.setMigrators(config.getMigrators());
-        }
+        this.storageKey = config.getStorageKey();
+        this.values.setAllowedKeys(config.getAllowedKeys());
+        this.values.setDefaultValues(config.getDefaultValues());
+        this.values.setMasks(config.getMasks());
+        this.values.setMigrators(config.getMigrators());
     }
 
     public void setValues(Map<String, String> newValues) {
