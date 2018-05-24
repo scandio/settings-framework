@@ -6,9 +6,7 @@ import com.atlassian.confluence.user.AuthenticatedUserThreadLocal;
 import com.atlassian.confluence.user.ConfluenceUser;
 import de.scandio.settingsframework.services.SettingsService;
 
-import javax.servlet.http.HttpServletRequest;
 import javax.ws.rs.*;
-import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import java.util.Map;
@@ -22,7 +20,7 @@ public class ConfluenceSettingsResource {
     private PermissionManager permissionManager;
 
     @GET
-    public Response getSettings(@Context HttpServletRequest httpServletRequest) {
+    public Response getSettings() {
         if (userIsNotAdministrator()) {
             return Response.status(404).build();
         }
@@ -32,7 +30,7 @@ public class ConfluenceSettingsResource {
     }
 
     @PUT
-    public Response setSettings(@Context HttpServletRequest httpServletRequest, Map<String, String> newSettings) {
+    public Response setSettings(Map<String, String> newSettings) {
         if (userIsNotAdministrator()) {
             return Response.status(404).build();
         }
