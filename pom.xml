@@ -5,7 +5,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>de.scandio</groupId>
-    <artifactId>values-framework</artifactId>
+    <artifactId>settings-framework</artifactId>
     <version>0.1.0-SNAPSHOT</version>
 
     <organization>
