@@ -10,6 +10,7 @@ public class SingletonMultiConfig {
     private static Map<String, Config> instancesByKey = new HashMap<>();
 
     public static Config getInstance(String key) {
-        return instancesByKey.putIfAbsent(key, new Config());
+        instancesByKey.putIfAbsent(key, new Config());
+        return instancesByKey.get(key);
     }
 }
