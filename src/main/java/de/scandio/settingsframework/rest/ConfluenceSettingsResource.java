@@ -23,23 +23,29 @@ public class ConfluenceSettingsResource {
 
     @GET
     public Response getSettings(@Context HttpServletRequest httpServletRequest) {
+        if (userIsNotAdministrator()) {
+            return Response.status(404).build();
+        }
+
         Map<String, String> settings = settingsService.getSettings().getMaskedValues();
         return Response.ok(settings).build();
     }
 
     @PUT
     public Response setSettings(@Context HttpServletRequest httpServletRequest, Map<String, String> newSettings) {
-        ConfluenceUser user = AuthenticatedUserThreadLocal.get();
-        boolean userIsNotAdministrator = user == null
-                || !permissionManager.hasPermission(user, Permission.ADMINISTER, PermissionManager.TARGET_SYSTEM);
-
-        if (userIsNotAdministrator) {
+        if (userIsNotAdministrator()) {
             return Response.status(404).build();
         }
 
         settingsService.getSettings().setValues((newSettings));
         Map<String, String> settings = settingsService.getSettings().getMaskedValues();
         return Response.ok(settings).build();
+    }
+
+    private boolean userIsNotAdministrator() {
+        ConfluenceUser user = AuthenticatedUserThreadLocal.get();
+        return user == null
+                || !permissionManager.hasPermission(user, Permission.ADMINISTER, PermissionManager.TARGET_SYSTEM);
     }
 
     public void setPermissionManager(PermissionManager permissionManager) {
