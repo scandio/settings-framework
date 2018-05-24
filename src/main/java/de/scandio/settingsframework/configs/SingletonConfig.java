@@ -4,12 +4,12 @@ import de.scandio.settingsframework.settings.Config;
 
 public class SingletonConfig {
 
-    private static Config instance = null;
+    private static Config config = null;
 
-    public static Config getInstance() {
-        if(instance == null) {
-            instance = new Config();
+    public static Config getConfig() {
+        if(config == null) {
+            config = new Config();
         }
-        return instance;
+        return config;
     }
 }

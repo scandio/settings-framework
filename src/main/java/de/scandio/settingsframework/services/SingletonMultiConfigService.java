@@ -7,6 +7,6 @@ public class SingletonMultiConfigService implements MultiConfigService {
 
     @Override
     public Config getConfig(String configKey) {
-        return SingletonMultiConfig.getInstance(configKey);
+        return SingletonMultiConfig.getConfig(configKey);
     }
 }

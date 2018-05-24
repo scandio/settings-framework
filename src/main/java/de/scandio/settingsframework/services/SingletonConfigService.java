@@ -8,6 +8,6 @@ public class SingletonConfigService implements ConfigService {
 
     @Override
     public Config getConfig() {
-        return SingletonConfig.getInstance();
+        return SingletonConfig.getConfig();
     }
 }
