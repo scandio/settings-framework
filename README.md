@@ -7,9 +7,26 @@ Confluence plugin.
 
 This is a simple QuickStart for adding a settings page to a Confluence plugin.
 
+### Add the maven repository
+
+Add the Scandio Maven repository to your pom.xml.
+
+    <repositories>
+        <repository>
+            <id>scandio-public-releases</id>
+            <name>Scandio Public Releases Repository</name>
+            <url>https://github.com/scandio/mvn-repo/raw/master/releases</url>
+        </repository>
+        <repository>
+            <id>scandio-public-snapshots</id>
+            <name>Scandio Public Snapshots Repository</name>
+            <url>https://github.com/scandio/mvn-repo/raw/master/snapshots</url>
+        </repository>
+    </repositories>
+
 ### Add settings-framework dependency
 
-Add the maven dependency to your pom.
+Add the maven dependency to your pom.xml.
 
     <dependency>
         <groupId>de.scandio</groupId>
