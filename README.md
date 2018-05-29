@@ -78,28 +78,28 @@ Add a Velocity template with the settings HTML.
             <form class="aui" style="display: none;">
     
                 <div class="field-group">
-                    <label for="exampleInput">$i18n.getText("settings-framework-example.exampleInput.label")</label>
+                    <label for="exampleInput">$i18n.getText("settings-framework-example.settings.exampleInput.label")</label>
                     <input class="text long-field" type="text" name="exampleInput" id="exampleInput">
-                    <div class="description">$i18n.getText("settings-framework-example.exampleInput.desc")</div>
+                    <div class="description">$i18n.getText("settings-framework-example.settings.exampleInput.desc")</div>
                 </div>
     
                 <div class="field-group">
-                    <label for="exampleDefault">$i18n.getText("settings-framework-example.exampleDefault.label")</label>
+                    <label for="exampleDefault">$i18n.getText("settings-framework-example.settings.exampleDefault.label")</label>
                     <input class="text long-field" type="text" name="exampleDefault" id="exampleDefault">
-                    <div class="description">$i18n.getText("settings-framework-example.exampleDefault.desc")</div>
+                    <div class="description">$i18n.getText("settings-framework-example.settings.exampleDefault.desc")</div>
                 </div>
     
                 <div class="field-group">
-                    <label for="exampleMasked">$i18n.getText("settings-framework-example.exampleMasked.label")</label>
+                    <label for="exampleMasked">$i18n.getText("settings-framework-example.settings.exampleMasked.label")</label>
                     <input class="text long-field" type="text" name="exampleMasked" id="exampleMasked">
-                    <div class="description">$i18n.getText("settings-framework-example.exampleMasked.desc")</div>
+                    <div class="description">$i18n.getText("settings-framework-example.settings.exampleMasked.desc")</div>
                 </div>
     
                 <div class="field-group">
                     <div class="checkbox">
                         <input class="checkbox" type="checkbox" name="exampleCheckbox" id="exampleCheckbox" value="true">
-                        <label for="exampleCheckbox">$i18n.getText("settings-framework-example.exampleCheckbox.label")</label>
-                        <div class="description">$i18n.getText("settings-framework-example.exampleCheckbox.desc")</div>
+                        <label for="exampleCheckbox">$i18n.getText("settings-framework-example.settings.exampleCheckbox.label")</label>
+                        <div class="description">$i18n.getText("settings-framework-example.settings.exampleCheckbox.desc")</div>
                     </div>
                 </div>
     
