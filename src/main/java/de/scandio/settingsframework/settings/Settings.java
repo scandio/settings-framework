@@ -1,5 +1,6 @@
 package de.scandio.settingsframework.settings;
 
+import java.util.HashMap;
 import java.util.Map;
 
 public class Settings {
@@ -54,5 +55,11 @@ public class Settings {
 
     public void resetValues() {
         store.removeValues(this.storageKey);
+    }
+
+    public void updateValue(String key, String newValue) {
+        Map<String, String> newValues = new HashMap<>(this.getValues());
+        newValues.put(key, newValue);
+        this.setValues(newValues);
     }
 }
