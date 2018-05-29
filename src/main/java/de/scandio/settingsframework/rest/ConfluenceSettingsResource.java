@@ -41,6 +41,39 @@ public class ConfluenceSettingsResource {
         return Response.ok(settings.getMaskedValues()).build();
     }
 
+    @GET
+    @Path("{configKey}")
+    public Response getSettings(@PathParam("configKey") String configKey) {
+        if (userIsNotAdministrator()) {
+            return Response.status(404).build();
+        }
+
+        Settings settings = settingsService.getSettings(configKey);
+
+        if (settings == null) {
+            return Response.status(404).build();
+        }
+
+        return Response.ok(settings.getMaskedValues()).build();
+    }
+
+    @PUT
+    @Path("{configKey}")
+    public Response setSettings(@PathParam("configKey") String configKey, Map<String, String> newSettings) {
+        if (userIsNotAdministrator()) {
+            return Response.status(404).build();
+        }
+
+        Settings settings = settingsService.getSettings(configKey);
+
+        if (settings == null) {
+            return Response.status(404).build();
+        }
+
+        settings.setValues((newSettings));
+        return Response.ok(settings.getMaskedValues()).build();
+    }
+
     private boolean userIsNotAdministrator() {
         ConfluenceUser user = AuthenticatedUserThreadLocal.get();
         return user == null

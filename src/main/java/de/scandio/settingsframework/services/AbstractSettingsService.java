@@ -16,6 +16,15 @@ public abstract class AbstractSettingsService implements SettingsService {
         return new Settings(store, config);
     }
 
+    @Override
+    public Settings getSettings(String configKey) {
+        Config config = configService.getConfig(configKey);
+        Store store = this.getStore();
+        return config != null && store != null
+                ? new Settings(store, config)
+                : null;
+    }
+
     protected abstract Store getStore();
 
     public void setConfigService(ConfigService configService) {

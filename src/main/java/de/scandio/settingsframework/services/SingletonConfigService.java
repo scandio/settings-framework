@@ -10,4 +10,9 @@ public class SingletonConfigService implements ConfigService {
     public Config getConfig() {
         return SingletonConfig.getConfig();
     }
+
+    @Override
+    public Config getConfig(String configKey) {
+        return SingletonConfig.getConfig(configKey);
+    }
 }

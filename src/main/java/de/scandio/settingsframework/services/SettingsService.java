@@ -6,4 +6,6 @@ public interface SettingsService {
 
     Settings getSettings();
 
+    Settings getSettings(String configKey);
+
 }
