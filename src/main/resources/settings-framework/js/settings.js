@@ -61,10 +61,14 @@
           $submitButton.click(function(e) {
             e.preventDefault();
 
-            var newValues = $form.serializeArray().reduce(function(obj, item) {
-              obj[item.name] = item.value;
-              return obj;
-            }, {});
+            var newValues = $form.serializeArray()
+              .concat($('input:checkbox:not(:checked)').map(function() {
+                return {name: this.name, value: this.checked ? this.value : 'false'};
+              }).get())
+              .reduce(function(obj, item) {
+                obj[item.name] = item.value;
+                return obj;
+              }, {});
 
             disableForm();
 
