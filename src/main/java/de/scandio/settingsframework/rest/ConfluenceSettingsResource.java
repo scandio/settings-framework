@@ -27,7 +27,7 @@ public class ConfluenceSettingsResource {
         }
 
         Settings settings = settingsService.getSettings();
-        return Response.ok(settings.getMaskedValues()).build();
+        return Response.ok(settings.getMasked()).build();
     }
 
     @PUT
@@ -37,8 +37,8 @@ public class ConfluenceSettingsResource {
         }
 
         Settings settings = settingsService.getSettings();
-        settings.setValues((newSettings));
-        return Response.ok(settings.getMaskedValues()).build();
+        settings.set((newSettings));
+        return Response.ok(settings.getMasked()).build();
     }
 
     @GET
@@ -54,7 +54,7 @@ public class ConfluenceSettingsResource {
             return Response.status(404).build();
         }
 
-        return Response.ok(settings.getMaskedValues()).build();
+        return Response.ok(settings.getMasked()).build();
     }
 
     @PUT
@@ -70,8 +70,8 @@ public class ConfluenceSettingsResource {
             return Response.status(404).build();
         }
 
-        settings.setValues((newSettings));
-        return Response.ok(settings.getMaskedValues()).build();
+        settings.set((newSettings));
+        return Response.ok(settings.getMasked()).build();
     }
 
     private boolean userIsNotAdministrator() {

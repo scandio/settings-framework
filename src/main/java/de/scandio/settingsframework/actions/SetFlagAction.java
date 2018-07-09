@@ -16,7 +16,7 @@ public class SetFlagAction extends ConfluenceActionSupport {
 
     @Override
     public String execute() throws Exception {
-        settingsService.getFlags().setValue(flagName, flagValue.equals("true"));
+        settingsService.getFlags().set(flagName, flagValue.equals("true"));
         return SUCCESS;
     }
 

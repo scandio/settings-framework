@@ -25,36 +25,36 @@ public class Flags {
                 .collect(Collectors.toMap(e -> e, e -> "false")) : null);
     }
 
-    public void setValues(Map<String, Boolean> newFlags) {
+    public void set(Map<String, Boolean> newValues) {
         Map<String, String> storedValues = store.loadValues(this.storageKey);
 
         Map<String, String> valuesToStore = this.values
-                .getValuesToStore(newFlags.entrySet()
+                .getValuesToStore(newValues.entrySet()
                         .stream()
                         .collect(Collectors.toMap(Map.Entry::getKey, e -> e.getValue() ? "true" : "false")), storedValues);
 
         store.storeValues(this.storageKey, valuesToStore);
     }
 
-    public Map<String, Boolean> getValues() {
+    public Map<String, Boolean> get() {
         Map<String, String> storedValues = store.loadValues(this.storageKey);
         return this.values.getValues(storedValues).entrySet()
                 .stream()
                 .collect(Collectors.toMap(Map.Entry::getKey, e -> "true".equals(e.getValue())));
     }
 
-    public boolean getValue(String key) {
-        Map<String, Boolean> values = this.getValues();
+    public boolean get(String key) {
+        Map<String, Boolean> values = this.get();
         return values != null ? values.get(key) : false;
     }
 
-    public void setValue(String key, boolean newFlag) {
-        Map<String, Boolean> newFlags = new HashMap<>(this.getValues());
-        newFlags.put(key, newFlag);
-        this.setValues(newFlags);
+    public void set(String key, boolean newValue) {
+        Map<String, Boolean> newFlags = new HashMap<>(this.get());
+        newFlags.put(key, newValue);
+        this.set(newFlags);
     }
 
-    public void resetValues() {
+    public void reset() {
         store.removeValues(this.storageKey);
     }
 }

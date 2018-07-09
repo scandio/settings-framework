@@ -24,7 +24,7 @@ public class Settings {
         this.values.setMigrators(config.getMigrators());
     }
 
-    public void setValues(Map<String, String> newValues) {
+    public void set(Map<String, String> newValues) {
         Map<String, String> storedValues = store.loadValues(this.storageKey);
 
         Map<String, String> valuesToStore = this.values
@@ -33,33 +33,33 @@ public class Settings {
         store.storeValues(this.storageKey, valuesToStore);
     }
 
-    public Map<String, String> getValues() {
+    public Map<String, String> get() {
         Map<String, String> storedValues = store.loadValues(this.storageKey);
         return this.values.getValues(storedValues);
     }
 
-    public Map<String, String> getMaskedValues() {
+    public Map<String, String> getMasked() {
         Map<String, String> storedValues = store.loadValues(this.storageKey);
         return this.values.getMaskedValues(storedValues);
     }
 
-    public String getValue(String key) {
-        Map<String, String> values = this.getValues();
+    public String get(String key) {
+        Map<String, String> values = this.get();
         return values != null ? values.get(key) : null;
     }
 
-    public void setValue(String key, String newValue) {
-        Map<String, String> newValues = new HashMap<>(this.getValues());
+    public void set(String key, String newValue) {
+        Map<String, String> newValues = new HashMap<>(this.get());
         newValues.put(key, newValue);
-        this.setValues(newValues);
+        this.set(newValues);
     }
 
-    public String getMaskedValue(String key) {
-        Map<String, String> maskedValues = this.getMaskedValues();
+    public String getMasked(String key) {
+        Map<String, String> maskedValues = this.getMasked();
         return maskedValues != null ? maskedValues.get(key) : null;
     }
 
-    public void resetValues() {
+    public void reset() {
         store.removeValues(this.storageKey);
     }
 }

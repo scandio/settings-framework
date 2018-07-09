@@ -206,7 +206,7 @@ Example:
 ### Masks
 
 Masks can be used to mask values in the settings form for example. You can define a mask for a value, and by calling
-`getMaskedValues()` instead of `getValues()`, you will get the masked instead of the real values.
+`getMasked()` instead of `get()`, you will get the masked instead of the real values.
 
 Example:
 
