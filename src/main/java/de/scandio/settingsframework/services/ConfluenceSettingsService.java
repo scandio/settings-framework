@@ -5,8 +5,6 @@ import com.atlassian.confluence.core.ContentPropertyManager;
 import com.atlassian.confluence.pages.Page;
 import com.atlassian.confluence.user.ConfluenceUser;
 import com.atlassian.confluence.user.PersonalInformationManager;
-import de.scandio.settingsframework.services.ConfigService;
-import de.scandio.settingsframework.services.SettingsService;
 import de.scandio.settingsframework.settings.Config;
 import de.scandio.settingsframework.settings.Settings;
 import de.scandio.settingsframework.settings.Store;
@@ -14,7 +12,6 @@ import de.scandio.settingsframework.stores.ConfluencePageXmlStore;
 import de.scandio.settingsframework.stores.ConfluenceSpaceXmlStore;
 import de.scandio.settingsframework.stores.ConfluenceUserXmlStore;
 import de.scandio.settingsframework.stores.ConfluenceXmlStore;
-
 
 public class ConfluenceSettingsService extends AbstractSettingsService implements SettingsService {
 

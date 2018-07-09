@@ -1,6 +1,7 @@
 package de.scandio.settingsframework.configs;
 
 import de.scandio.settingsframework.settings.Config;
+import de.scandio.settingsframework.settings.FlagConfig;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -10,6 +11,7 @@ import java.util.Map;
 public class SingletonConfig {
 
     private static Config config = null;
+    private static FlagConfig flagConfig = null;
 
     private static Map<String, Config> configsByKey = new HashMap<>();
     private static List<String> allowedKeys;
@@ -26,6 +28,13 @@ public class SingletonConfig {
             configsByKey.putIfAbsent(key, new Config());
         }
         return configsByKey.get(key);
+    }
+
+    public static FlagConfig getFlagConfig() {
+        if(flagConfig == null) {
+            flagConfig = new FlagConfig();
+        }
+        return flagConfig;
     }
 
     public static void addAllowedKey(String key) {

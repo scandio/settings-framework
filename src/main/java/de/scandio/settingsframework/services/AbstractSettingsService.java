@@ -1,9 +1,6 @@
 package de.scandio.settingsframework.services;
 
-import de.scandio.settingsframework.settings.Config;
-import de.scandio.settingsframework.settings.Settings;
-import de.scandio.settingsframework.settings.Store;
-
+import de.scandio.settingsframework.settings.*;
 
 public abstract class AbstractSettingsService implements SettingsService {
 
@@ -23,6 +20,13 @@ public abstract class AbstractSettingsService implements SettingsService {
         return config != null && store != null
                 ? new Settings(store, config)
                 : null;
+    }
+
+    @Override
+    public Flags getFlags() {
+        FlagConfig config = configService.getFlagConfig();
+        Store store = this.getStore();
+        return new Flags(store, config);
     }
 
     protected abstract Store getStore();
