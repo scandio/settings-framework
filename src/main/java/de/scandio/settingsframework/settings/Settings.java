@@ -48,6 +48,12 @@ public class Settings {
         return values != null ? values.get(key) : null;
     }
 
+    public void setValue(String key, String newValue) {
+        Map<String, String> newValues = new HashMap<>(this.getValues());
+        newValues.put(key, newValue);
+        this.setValues(newValues);
+    }
+
     public String getMaskedValue(String key) {
         Map<String, String> maskedValues = this.getMaskedValues();
         return maskedValues != null ? maskedValues.get(key) : null;
@@ -55,11 +61,5 @@ public class Settings {
 
     public void resetValues() {
         store.removeValues(this.storageKey);
-    }
-
-    public void updateValue(String key, String newValue) {
-        Map<String, String> newValues = new HashMap<>(this.getValues());
-        newValues.put(key, newValue);
-        this.setValues(newValues);
     }
 }
