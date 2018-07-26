@@ -51,10 +51,20 @@
         });
       };
 
+      var triggerInitialValuesFilledEvent = function() {
+        $settings.trigger('settings.initialValuesFilled');
+      };
+
+      var triggerValuesFilledEvent = function() {
+        $settings.trigger('settings.valuesFilled');
+      };
+
       $.ajax({
         url: url,
         success: function(initialValues){
           fillValuesIntoForm(initialValues);
+          triggerInitialValuesFilledEvent();
+          triggerValuesFilledEvent();
           $spinner.hide();
           $form.show();
 
@@ -81,6 +91,7 @@
               success: function(storedValues) {
                 clearValues();
                 fillValuesIntoForm(storedValues);
+                triggerValuesFilledEvent();
                 enableForm();
                 $successIcon.show();
                 setTimeout(function() {
