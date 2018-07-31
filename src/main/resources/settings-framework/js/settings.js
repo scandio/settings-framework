@@ -73,7 +73,7 @@
 
             var newValues = $form.serializeArray()
               .concat($('input:checkbox:not(:checked)').map(function() {
-                return {name: this.name, value: this.checked ? this.value : 'false'};
+                return {name: this.name, value: this.checked ? 'true' : 'false'};
               }).get())
               .reduce(function(obj, item) {
                 obj[item.name] = item.value;

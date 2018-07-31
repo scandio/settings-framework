@@ -97,7 +97,7 @@ Add a Velocity template with the settings HTML.
     
                 <div class="field-group">
                     <div class="checkbox">
-                        <input class="checkbox" type="checkbox" name="exampleCheckbox" id="exampleCheckbox" value="true">
+                        <input class="checkbox" type="checkbox" name="exampleCheckbox" id="exampleCheckbox">
                         <label for="exampleCheckbox">$i18n.getText("settings-framework-example.settings.exampleCheckbox.label")</label>
                         <div class="description">$i18n.getText("settings-framework-example.settings.exampleCheckbox.desc")</div>
                     </div>
