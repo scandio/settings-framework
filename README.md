@@ -31,7 +31,7 @@ Add the maven dependency to your pom.xml.
     <dependency>
         <groupId>de.scandio</groupId>
         <artifactId>settings-framework</artifactId>
-        <version>0.3.1</version>
+        <version>0.5.0</version>
     </dependency>
     
     
