@@ -1,8 +1,8 @@
 /* global $, AJS*/
 
-(function($, ready) {
+(function() {
 
-  ready(function() {
+  var initSettings = function($) {
     $('.settings').each(function() {
       var $settings = $(this);
 
@@ -104,5 +104,14 @@
         }
       });
     });
-  });
-})(typeof AJS === 'undefined' ? $ : AJS.$, typeof AJS === 'undefined' ? $(document).ready : AJS.toInit);
+  };
+
+  if (typeof AJS !== 'undefined') {
+    AJS.toInit(initSettings);
+  } else {
+    $(document).ready(function() {
+      initSettings($);
+    });
+  }
+
+})();
