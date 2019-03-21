@@ -1,6 +1,6 @@
 /* global $, AJS*/
 
-(function() {
+var __SF__ = __SF__ || (function() {
 
   var initSettings = function($) {
     $('.settings').each(function() {
@@ -136,5 +136,9 @@
       initSettings($);
     });
   }
+
+  return {
+    // empty object (no exposed methods)
+  };
 
 })();

@@ -57,7 +57,7 @@ Add a config class and configure your settings.
     
 ### Add your settings HTML
 
-Add a Velocity template with the settings HTML.
+Add a Velocity template with the settings HTML. Note that it's important to use a dedicated context for your app (i.e. "settings-YOURAPP") rather than just a generic context (e.g. "settings"). If multiple apps use the same context the framework's web resources might be loaded twice which leads to unintended side-effects.
 
     <html>
     <head>
@@ -67,7 +67,7 @@ Add a Velocity template with the settings HTML.
     </head>
     <body>
     
-        #requireResourcesForContext("settings")
+        #requireResourcesForContext("settings-YOURAPP")
     
         <div class="settings" data-url="$req.contextPath/rest/settings-framework-example/latest/settings">
     
@@ -141,7 +141,7 @@ Add the required plugin modules from the settings framework.
     <web-resource key="settings-resources" name="Settings Resources">
         <dependency>com.atlassian.auiplugin:ajs</dependency>
         <resource type="download" name="settings.js" location="settings-framework/js/settings.js"/>
-        <context>settings</context>
+        <context>settings-YOURAPP</context>
     </web-resource>
 
     <!-- /SETTINGS -->
