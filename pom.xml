@@ -55,10 +55,9 @@
     </build>
 
     <scm>
-        <url>https://github.com/scandio/settings-framework</url>
-        <connection>scm:git:git@github.com:scandio/settings-framework.git</connection>
-        <developerConnection>scm:git:git@github.com:scandio/settings-framework.git</developerConnection>
-        <tag>settings-framework-0.5.2-m02</tag>
+        <connection>https://github.com/scandio/settings-framework</connection>
+        <developerConnection>https://github.com/scandio/settings-framework</developerConnection>
+        <tag>HEAD</tag>
     </scm>
 
     <distributionManagement>
