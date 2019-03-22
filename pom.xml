@@ -56,8 +56,8 @@
 
     <scm>
         <url>https://github.com/scandio/settings-framework</url>
-        <connection>scm:git:git@github.com:scandio/settings-framework.git</connection>
-        <developerConnection>scm:git:git@github.com:scandio/settings-framework.git</developerConnection>
+        <connection>scm:git:ssh://git@github.com:scandio/settings-framework.git</connection>
+        <developerConnection>scm:git:ssh://git@github.com:scandio/settings-framework.git</developerConnection>
         <tag>settings-framework-0.5.2-m02</tag>
     </scm>
 
