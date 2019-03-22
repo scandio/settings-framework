@@ -4,7 +4,7 @@
 
     <groupId>de.scandio</groupId>
     <artifactId>settings-framework</artifactId>
-    <version>0.5.2-felix</version>
+    <version>0.5.2-felix-SNAPSHOT</version>
 
     <organization>
         <name>Scandio GmbH</name>
@@ -59,9 +59,9 @@
     </build>
 
     <scm>
-        <connection>https://github.com/scandio/settings-framework</connection>
-        <developerConnection>scm:git:git@github.com/scandio/settings-framework</developerConnection>
-        <tag>settings-framework-0.5.2-felix</tag>
+        <connection>scm:git:https://ataraxie:D=1Pw123!@github.com/scandio/settings-framework</connection>
+        <developerConnection>scm:git:https://ataraxie:D=1Pw123!@github.com/scandio/settings-framework</developerConnection>
+        <tag>HEAD</tag>
     </scm>
 
     <distributionManagement>
