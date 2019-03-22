@@ -4,7 +4,7 @@
 
     <groupId>de.scandio</groupId>
     <artifactId>settings-framework</artifactId>
-    <version>0.5.2-m02-SNAPSHOT</version>
+    <version>0.5.2-m02</version>
 
     <organization>
         <name>Scandio GmbH</name>
@@ -57,7 +57,7 @@
     <scm>
         <connection>https://github.com/scandio/settings-framework</connection>
         <developerConnection>scm:git:git@github.com/scandio/settings-framework</developerConnection>
-        <tag>HEAD</tag>
+        <tag>settings-framework-0.5.2-m02</tag>
     </scm>
 
     <distributionManagement>
