@@ -4,7 +4,7 @@
 
     <groupId>de.scandio</groupId>
     <artifactId>settings-framework</artifactId>
-    <version>0.5.2-m02</version>
+    <version>0.5.2-felix-SNAPSHOT</version>
 
     <organization>
         <name>Scandio GmbH</name>
@@ -13,6 +13,10 @@
 
     <name>Settings Framework</name>
     <description>A framework that helps to store and migrate application settings.</description>
+
+    <properties>
+        <project.scm.id>scandio-github</project.scm.id>
+    </properties>
 
     <dependencies>
         <dependency>
@@ -57,7 +61,7 @@
     <scm>
         <connection>https://github.com/scandio/settings-framework</connection>
         <developerConnection>scm:git:git@github.com/scandio/settings-framework</developerConnection>
-        <tag>settings-framework-0.5.2-m02</tag>
+        <tag>HEAD</tag>
     </scm>
 
     <distributionManagement>
