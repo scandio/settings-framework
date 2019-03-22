@@ -65,12 +65,12 @@
         <repository>
             <id>scandio-public-releases</id>
             <name>Scandio Public Releases Repository</name>
-            <url>${scandio.public.repository}/releases</url>
+            <url>https://github.com/scandio/mvn-repo/raw/master/releases</url>
         </repository>
         <snapshotRepository>
             <id>scandio-public-snapshots</id>
             <name>Scandio Public Snapshots Repository</name>
-            <url>${scandio.public.repository}/snapshots</url>
+            <url>https://github.com/scandio/mvn-repo/raw/master/snapshots</url>
         </snapshotRepository>
     </distributionManagement>
 
