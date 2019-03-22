@@ -55,8 +55,8 @@
     </build>
 
     <scm>
-        <connection>scm:git:git@github.com/scandio/settings-framework</connection>
-        <developerConnection>https://github.com/scandio/settings-framework</developerConnection>
+        <connection>https://github.com/scandio/settings-framework</connection>
+        <developerConnection>scm:git:git@github.com/scandio/settings-framework</developerConnection>
         <tag>HEAD</tag>
     </scm>
 
