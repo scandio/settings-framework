@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>de.scandio</groupId>
+    <artifactId>settings-framework</artifactId>
+    <version>0.5.3-felix-SNAPSHOT</version>
+
+    <organization>
+        <name>Scandio GmbH</name>
+        <url>http://www.scandio.de/</url>
+    </organization>
+
+    <name>Settings Framework</name>
+    <description>A framework that helps to store and migrate application settings.</description>
+
+    <properties>
+        <project.scm.id>scandio-github</project.scm.id>
+    </properties>
+
+    <dependencies>
+        <dependency>
+            <groupId>com.atlassian.confluence</groupId>
+            <artifactId>confluence</artifactId>
+            <version>6.9.0</version>
+            <scope>provided</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>4.10</version>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <configuration>
+                    <source>1.8</source>
+                    <target>1.8</target>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-release-plugin</artifactId>
+                <version>2.4.2</version>
+                <dependencies>
+                    <dependency>
+                        <groupId>org.apache.maven.scm</groupId>
+                        <artifactId>maven-scm-provider-gitexe</artifactId>
+                        <version>1.8.1</version>
+                    </dependency>
+                </dependencies>
+            </plugin>
+        </plugins>
+    </build>
+
+    <scm>
+        <connection>scm:git:https://github.com/scandio/settings-framework</connection>
+        <developerConnection>scm:git:https://github.com/scandio/settings-framework</developerConnection>
+        <tag>HEAD</tag>
+    </scm>
+
+    <distributionManagement>
+        <repository>
+            <id>scandio-public-releases</id>
+            <name>Scandio Public Releases Repository</name>
+            <url>https://github.com/scandio/mvn-repo/raw/master/releases</url>
+        </repository>
+        <snapshotRepository>
+            <id>scandio-public-snapshots</id>
+            <name>Scandio Public Snapshots Repository</name>
+            <url>https://github.com/scandio/mvn-repo/raw/master/snapshots</url>
+        </snapshotRepository>
+    </distributionManagement>
+
+</project>
