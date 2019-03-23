@@ -14,6 +14,10 @@
     <name>Settings Framework</name>
     <description>A framework that helps to store and migrate application settings.</description>
 
+    <properties>
+        <project.scm.id>scandio-github</project.scm.id>
+    </properties>
+
     <dependencies>
         <dependency>
             <groupId>com.atlassian.confluence</groupId>
@@ -65,12 +69,12 @@
         <repository>
             <id>scandio-public-releases</id>
             <name>Scandio Public Releases Repository</name>
-            <url>${scandio.public.repository}/releases</url>
+            <url>https://github.com/scandio/mvn-repo/raw/master/releases</url>
         </repository>
         <snapshotRepository>
             <id>scandio-public-snapshots</id>
             <name>Scandio Public Snapshots Repository</name>
-            <url>${scandio.public.repository}/snapshots</url>
+            <url>https://github.com/scandio/mvn-repo/raw/master/snapshots</url>
         </snapshotRepository>
     </distributionManagement>
 
