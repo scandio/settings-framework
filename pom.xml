@@ -4,7 +4,7 @@
 
     <groupId>de.scandio</groupId>
     <artifactId>settings-framework</artifactId>
-    <version>0.5.4-felix-SNAPSHOT</version>
+    <version>0.5.2</version>
 
     <organization>
         <name>Scandio GmbH</name>
