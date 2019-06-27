@@ -95,7 +95,7 @@ var __SF__ = __SF__ || (function() {
             e.preventDefault();
 
             var newValues = $form.serializeArray()
-              .concat($('input:checkbox:not(:checked)').map(function() {
+              .concat($('input:checkbox').map(function() {
                 return {name: this.name, value: this.checked ? 'true' : 'false'};
               }).get())
               .reduce(function(obj, item) {
